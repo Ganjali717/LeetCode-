@@ -1,4 +1,6 @@
-﻿/* -- Two Sum -- */
+﻿using System.Collections;
+using System.Text.Encodings.Web;
+/*/* -- Two Sum -- #1#
 static int[] TwoSum(int[] nums, int target)
 {
     int arrayLength = nums.Length;
@@ -16,7 +18,7 @@ static int[] TwoSum(int[] nums, int target)
 }
 
 
-/* -- Palindrome Number -- */
+/* -- Palindrome Number -- #1#
 static bool IsPalindrome(int x)
 {
     string a1 = x.ToString();
@@ -41,7 +43,7 @@ static bool IsPalindrome(int x)
     }
 }
 
-/* -- Roman to Integer -- */
+/* -- Roman to Integer -- #1#
 static int RomanToInt(string s)
 {
     Dictionary<char, int> list = new Dictionary<char, int>(){
@@ -66,4 +68,39 @@ static int RomanToInt(string s)
         }
     }
     return number;
+}*/
+
+/* -- Longest Common Prefix -- */
+
+
+Console.WriteLine(IsValid("["));
+
+static bool IsValid(string s)
+{
+    Stack left = new Stack();
+    foreach (char c in s.ToCharArray())
+    {
+        if (c == '(' || c == '{' || c == '[')
+        {
+            left.Push(c); 
+        }
+       
+        else if (c == ')' && left.Count != 0 && (char)left.Peek() == '(')
+        {
+            left.Pop();
+        }
+        else if (c == '}' && left.Count != 0 && (char)left.Peek() == '{')
+        {
+            left.Pop();
+        }
+        else if (c == ']' && left.Count != 0 && (char)left.Peek() == '[')
+        {
+            left.Pop();
+        }
+        else
+        {
+            return false; 
+        }
+    }
+    return true;
 }
