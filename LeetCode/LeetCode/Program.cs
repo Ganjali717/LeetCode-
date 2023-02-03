@@ -1,6 +1,7 @@
 ﻿using System.Collections;
+using System.Numerics;
 using System.Text.Encodings.Web;
-/*/* -- Two Sum -- #1#
+/* -- Two Sum -- */
 static int[] TwoSum(int[] nums, int target)
 {
     int arrayLength = nums.Length;
@@ -17,8 +18,7 @@ static int[] TwoSum(int[] nums, int target)
     return Array.Empty<int>();
 }
 
-
-/* -- Palindrome Number -- #1#
+/* -- Palindrome Number -- */
 static bool IsPalindrome(int x)
 {
     string a1 = x.ToString();
@@ -43,7 +43,7 @@ static bool IsPalindrome(int x)
     }
 }
 
-/* -- Roman to Integer -- #1#
+/* -- Roman to Integer -- */
 static int RomanToInt(string s)
 {
     Dictionary<char, int> list = new Dictionary<char, int>(){
@@ -68,13 +68,9 @@ static int RomanToInt(string s)
         }
     }
     return number;
-}*/
+}
 
-/* -- Longest Common Prefix -- */
-
-
-Console.WriteLine(IsValid("["));
-
+/* -- Valid Parentheses -- */
 static bool IsValid(string s)
 {
     Stack left = new Stack();
@@ -82,9 +78,8 @@ static bool IsValid(string s)
     {
         if (c == '(' || c == '{' || c == '[')
         {
-            left.Push(c); 
+            left.Push(c);
         }
-       
         else if (c == ')' && left.Count != 0 && (char)left.Peek() == '(')
         {
             left.Pop();
@@ -103,4 +98,34 @@ static bool IsValid(string s)
         }
     }
     return true;
+}
+
+/* -- PlusOne -- */
+static int[] PlusOne(int[] digits)
+{
+    if (1 <= digits.Length || digits.Length <= 100)
+    {
+        string number = "";
+        for (int i = 0; i < digits.Length; i++)
+        {
+            if (0 <= digits[i] || digits[i] <= 9)
+            {
+                number += digits[i].ToString();
+            }
+            else
+            {
+                return new int[] { };
+            }
+        }
+        string newNum = Convert.ToString(BigInteger.Parse(number) + 1);
+        int[] newDigits = new int[newNum.Length];
+        int j = 0;
+        for (int i = 0; i < newNum.Length; i++)
+        {
+            newDigits[j] = Convert.ToInt32(newNum[i].ToString());
+            j++;
+        }
+        return newDigits;
+    }
+    return new int[] { };
 }
